@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>Loan Applications</h2>
+<a href="{% url 'loan_application_create' %}" class="btn btn-primary mb-3">New Application</a>
+<table class="table table-bordered">
+    <thead><tr><th>ID</th><th>Client</th><th>Product</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+        {% for app in applications %}
+        <tr>
+            <td>{{ app.id }}</td>
+            <td>{{ app.client.full_name }}</td>
+            <td>{{ app.product.name }}</td>
+            <td>${{ app.amount_requested }}</td>
+            <td>{{ app.status }}</td>
+            <td>
+                {% if app.status == 'pending' and user.is_superuser %}
+                    <a href="{% url 'approve_loan' app.id %}" class="btn btn-sm btn-success">Approve</a>
+                {% elif app.status == 'approved' and user.is_superuser %}
+                    <a href="{% url 'disburse_loan' app.id %}" class="btn btn-sm btn-warning">Disburse</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

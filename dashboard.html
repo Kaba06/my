@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>Dashboard</h2>
+<div class="row mt-4">
+    <div class="col-md-3"><div class="card text-white bg-primary"><div class="card-body">Clients: {{ clients_count }}</div></div></div>
+    <div class="col-md-3"><div class="card text-white bg-success"><div class="card-body">Active Loans: {{ active_loans }}</div></div></div>
+    <div class="col-md-3"><div class="card text-white bg-warning"><div class="card-body">Pending Apps: {{ pending_apps }}</div></div></div>
+    <div class="col-md-3"><div class="card text-white bg-info"><div class="card-body">Disbursed: ${{ total_disbursed }}</div></div></div>
+</div>
+{% endblock %}

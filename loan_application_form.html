@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>New Loan Application</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3"><label>Client</label><select name="client" class="form-control" required>{% for c in clients %}<option value="{{ c.id }}">{{ c.full_name }}</option>{% endfor %}</select></div>
+    <div class="mb-3"><label>Loan Product</label><select name="product" class="form-control" required>{% for p in products %}<option value="{{ p.id }}">{{ p.name }} ({{ p.interest_rate }}% {{ p.interest_type }})</option>{% endfor %}</select></div>
+    <div class="mb-3"><label>Amount Requested ($)</label><input type="number" step="0.01" name="amount" class="form-control" required></div>
+    <div class="mb-3"><label>Duration (months)</label><input type="number" name="duration" class="form-control" required></div>
+    <div class="mb-3"><label>Purpose</label><textarea name="purpose" class="form-control"></textarea></div>
+    <button type="submit" class="btn btn-primary">Submit Application</button>
+</form>
+{% endblock %}

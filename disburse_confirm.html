@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>Confirm Disbursement</h2>
+<p>Client: {{ application.client.full_name }}</p>
+<p>Amount: ${{ application.amount_requested }}</p>
+<p>Duration: {{ application.duration_months }} months</p>
+<p>Monthly Payment: ${{ application.calculate_monthly_payment }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm Disbursement</button>
+    <a href="{% url 'loan_application_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

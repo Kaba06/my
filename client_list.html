@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>Clients</h2>
+<a href="{% url 'add_client' %}" class="btn btn-primary mb-3">Add Client</a>
+<table class="table table-bordered">
+    <thead><tr><th>ID</th><th>Full Name</th><th>National ID</th><th>Phone</th><th>Registered</th></tr></thead>
+    <tbody>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.id }}</td>
+            <td>{{ client.full_name }}</td>
+            <td>{{ client.national_id }}</td>
+            <td>{{ client.phone }}</td>
+            <td>{{ client.date_registered }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
